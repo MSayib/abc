@@ -1,14 +1,13 @@
 <template>
-  <v-app id="login">
-    <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <v-card class="elevation-12">
-              <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Masuk</v-toolbar-title>
-                <v-spacer />
-                <!-- <v-tooltip right> // buat nambah icon + fungsi tombol link keluar di pojok atas Login Form
+<v-app id="login">
+  <v-content>
+    <v-container>
+      <body class="text-center">
+        <v-card class="elevation-12">
+          <v-toolbar color="primary" dark flat>
+            <v-toolbar-title>Masuk</v-toolbar-title>
+            <v-spacer />
+            <!-- <v-tooltip right> // buat nambah icon + fungsi tombol link keluar di pojok atas Login Form
                   <template v-slot:activator="{ on }">
                     <v-btn
                       icon
@@ -21,36 +20,35 @@
                     </v-btn>
                   </template>
                   <span>Codepen</span>
-                </v-tooltip>-->
-              </v-toolbar>
-              <v-card-text>
-                <v-form>
-                  <v-text-field
-                    label="Username"
-                    name="username"
-                    prepend-icon="mdi-account"
-                    type="text"
-                  />
-                  <!-- nyari kode icon disini : https://materialdesignicons.com/cdn/2.0.46/ -->
-                  <v-text-field
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="mdi-lock"
-                    type="password"
-                  />
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn color="primary" nuxt to="/home">Login</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
-  </v-app>
+            </v-tooltip>-->
+          </v-toolbar>
+          <v-card-text>
+            <v-form>
+              <v-text-field
+                label="Username"
+                name="username"
+                prepend-icon="mdi-account"
+                type="text"
+              />
+              <!-- nyari kode icon disini : https://materialdesignicons.com/cdn/2.0.46/ -->
+              <v-text-field
+                id="password"
+                label="Password"
+                name="password"
+                prepend-icon="mdi-lock"
+                type="password"
+              />
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn color="primary" nuxt to="/home">Login</v-btn>
+          </v-card-actions>
+        </v-card>
+      </body>
+    </v-container>
+  </v-content>
+</v-app>
 </template>
 
 <script>

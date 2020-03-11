@@ -17,12 +17,12 @@
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
+      <!-- <v-btn icon @click.stop="clipped = !clipped">
         <v-icon>mdi-application</v-icon>
       </v-btn>
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>mdi-minus</v-icon>
-      </v-btn>
+      </v-btn>-->
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <!-- menghilangkan tombol dan icon burger di pojok kanan atas---- -->
@@ -57,7 +57,7 @@
       </v-list>
     </v-navigation-drawer>-->
     <v-footer :fixed="fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() }} | M Sayib</span>
     </v-footer>
   </v-app>
 </template>

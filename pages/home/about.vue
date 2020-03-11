@@ -61,6 +61,7 @@ export default {
         const { sortBy, sortDesc, page, itemsPerPage } = this.options;
 
         let items = this.getDesserts();
+        console.log(this.getDesserts);
         const total = items.length;
 
         if (sortBy.length === 1 && sortDesc.length === 1) {
