@@ -14,6 +14,7 @@
       </li>
     </ul>
   </div>
+  <!-- ini crud sederhana yg udah work tinggal modif dikasih style -->
 </template>
 
 <script>
