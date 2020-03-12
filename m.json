@@ -1,32 +1,39 @@
 {
-    "desserts": [
-        {
-            "name": "Frozen Yogurt",
-            "calories": 159,
-            "fat": 6.0,
-            "carbs": 24,
-            "protein": 4.0
-        },
-        {
-            "name": "Frozen A",
-            "calories": 159,
-            "fat": 6.0,
-            "carbs": 24,
-            "protein": 4.0
-        },
-        {
-            "name": "Frozen B",
-            "calories": 159,
-            "fat": 6.0,
-            "carbs": 24,
-            "protein": 4.0
-        },
-        {
-            "name": "Frozen C",
-            "calories": 159,
-            "fat": 6.0,
-            "carbs": 24,
-            "protein": 4.0
-        }
-    ]
+  "desserts": [
+    {
+      "name": "Frozen Yogurt",
+      "calories": 159
+    },
+    {
+      "name": "Frozen A",
+      "calories": 159
+    },
+    {
+      "name": "Frozen B",
+      "calories": 159
+    },
+    {
+      "name": "Frozen C",
+      "calories": 159
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "username": "tampan",
+      "name": "sayib",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "ganteng",
+      "name": "roziq",
+      "role": "user"
+    },
+    {
+      "name": "yaelah",
+      "role": "admin",
+      "id": "3"
+    }
+  ]
 }

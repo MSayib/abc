@@ -1,30 +1,36 @@
 <template>
   <div>
-    <form @submit.prevent="add">
+    <!-- <form @submit.prevent="add">
       <input type="hidden" v-model="form.id" />
       <input type="text" v-model="form.name" />
       <button type="submit" v-show="!updateSubmit">add</button>
       <button type="button" v-show="updateSubmit" @click="update(form)">Update</button>
-    </form>
-    <ul v-for="user in users" :key="user.id">
+    </form>-->
+    <!-- <ul v-for="user in users" :key="user.id">
       <li>
         <span>{{user.name}}</span> &#160;
         <button @click="edit(user)">Edit</button> ||
         <button @click="del(user)">Delete</button>
       </li>
-    </ul>
+    </ul>-->
+    <form>
+      <input v-model="orang.name" name="name" placeholder="name" />
+      <input v-model="orang.role" name="role" type="text" placeholder="jabatan" />
+      <input v-model="orang.id" name="id" placeholder="idnya" />
+      <button @click.prevent="kirim">kirim</button>
+    </form>
     <v-simple-table>
       <template v-slot:default>
         <thead>
           <tr>
             <th class="text-left">Name</th>
-            <th class="text-left">Calories</th>
+            <th class="text-left">Role</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="dessert in desserts" :key="dessert.name">
-            <td>{{ dessert.name }}</td>
-            <td>{{ dessert.calories }}</td>
+          <tr v-for="orang in accounts" :key="orang.name">
+            <td>{{ orang.name }}</td>
+            <td>{{ orang.role }}</td>
           </tr>
         </tbody>
       </template>
@@ -47,21 +53,24 @@ export default {
       type: String,
       default: ""
     },
-    calories: {
-      type: Number,
-      default: 0
+    role: {
+      type: String,
+      default: ""
     }
   },
   data() {
     return {
+      //form ini perlu diganti, ini kode lama
       form: {
         id: "",
         name: ""
       },
+      orang: {},
+      //sampe sini
       users: "",
       updateSubmit: false,
 
-      desserts: [],
+      accounts: [],
       isError: false,
       isEmpty: false,
       isLoading: false,
@@ -76,10 +85,10 @@ export default {
       this.isLoading = true;
 
       try {
-        const res = await Axios.get("http://localhost:3003/desserts");
-        this.desserts = res.data;
+        const res = await Axios.get("http://localhost:3003/accounts");
+        this.accounts = res.data;
 
-        if (this.desserts.length === 0) {
+        if (this.accounts.length === 0) {
           this.isEmpty = true;
         }
       } catch (err) {
@@ -89,6 +98,14 @@ export default {
       }
 
       this.isLoading = false;
+    },
+    kirim() {
+      //FUNGSI CREATE berhasil, lihat accounts pada m.json untuk lihat detail dan baca data() diatas
+      this.$axios
+        .post("http://localhost:3003/accounts", this.orang)
+        .then(() => {
+          this.$router.push("/home/crudx");
+        });
       // load() {
       //   axios
       //     .get("http://localhost:3002/users")
@@ -100,7 +117,7 @@ export default {
       //     });
       // },
       // add() {
-      //   axios.post("http://localhost:3002/users/", this.form).then(res => {
+      //   axios.post("http://localhost:3002/accounts/", this.form).then(res => {
       //     this.load();
       //     this.form.name = "";
       //   });
