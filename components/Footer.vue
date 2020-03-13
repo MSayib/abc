@@ -1,6 +1,6 @@
 <template>
   <v-footer
-    dark
+    light
     padless
   >
     <v-card

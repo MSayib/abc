@@ -5,8 +5,8 @@
     width="600"
   >
     <v-navigation-drawer
-      class="deep-black accent-4"
-      dark
+      class="deep-white accent-4"
+      light
       permanent
     >
       <v-list>
@@ -39,11 +39,12 @@
     data () {
       return {
         items: [
-          { title: 'Sejarah', },
-          { title: 'Percintaan', },
-          { title: 'Biologi',},
-                    { title: 'Fisika',},
-                              { title: 'Kimia',},
+        { title: 'Sejarah', },
+        { title: 'Percintaan', },
+        { title: 'Biologi',},
+        { title: 'Fisika',},
+        { title: 'Kimia',},
+        { title: 'DLL',},
         ],
       }
     },
