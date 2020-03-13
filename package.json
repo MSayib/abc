@@ -1,8 +1,8 @@
 {
-  "name": "frontproject",
+  "name": "stuck",
   "version": "1.0.0",
-  "description": "My supreme Nuxt.js project",
-  "author": "farhanfadliansyah36",
+  "description": "My ace Nuxt.js project",
+  "author": "MSayib",
   "private": true,
   "scripts": {
     "dev": "nuxt",

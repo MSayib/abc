@@ -1,0 +1,30 @@
+{
+	"users": [
+		{
+			"id": 1,
+			"first_name": "Tom",
+			"last_name": "Morello",
+			"full_name": "Tom Morello",
+			"email": "tom@example.com",
+			"password": "test1234"
+		},
+		{
+			"id": 2,
+			"first_name": "Sayib",
+			"last_name": "Roziq",
+			"full_name": "Muhamad Sayib Roziq",
+			"email": "sayib@indomie.com",
+			"password": "indomie"
+		}
+	],
+	"admins": [
+		{
+			"id": 9,
+			"first_name": "admin",
+			"last_name": "admin",
+			"full_name": "Sayib Admin",
+			"email": "admin@admin.com",
+			"password": "admin"
+		}
+	]
+}

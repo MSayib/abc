@@ -1,6 +1,6 @@
-# frontproject
+# stuck
 
-> My supreme Nuxt.js project
+> My ace Nuxt.js project
 
 ## Build Setup
 
