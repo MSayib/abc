@@ -16,7 +16,7 @@
     <form>
       <input v-model="orang.name" name="name" placeholder="name" />
       <input v-model="orang.role" name="role" type="text" placeholder="jabatan" />
-      <input v-model="orang.id" name="id" placeholder="idnya" />
+      <input v-model="orang.id" name="id" type="hidden" placeholder="idnya" />
       <button @click.prevent="kirim">kirim</button>
     </form>
     <v-simple-table>
