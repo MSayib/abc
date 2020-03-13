@@ -1,49 +1,80 @@
 <template>
   <div>
-    <h1>Data List</h1>
-    <nuxt-link to="/data/create">
-      <button>tambah data</button>
-    </nuxt-link>
-    <b-form-input type="text" v-model="cari" placeholder="cari disini"></b-form-input>
-    <!-- <b-button variant="primary" @click="submit">Search</b-button> -->
-    <p v-if="isError">error</p>
-    <p v-else-if="isEmpty">tidak ditemukan</p>
-    <table v-else-if="!isLoading" border="1 solid">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>isi body</th>
-          <th>userID</th>
-          <th>action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ListItem
-          v-for="data in datas"
-          :id="String(data.id)"
-          :key="String(data.id)"
-          :title="data.title"
-          :body="data.body"
-          :userId="String(data.userId)"
-          @refresh-dong="getData"
-        ></ListItem>
-      </tbody>
-    </table>
-    <b-spinner v-else label="Spinning"></b-spinner>
-    <!-- <b-table striped hover :items="datas"></b-table> -->
+    <!-- <form @submit.prevent="add">
+      <input type="hidden" v-model="form.id" />
+      <input type="text" v-model="form.name" />
+      <button type="submit" v-show="!updateSubmit">add</button>
+      <button type="button" v-show="updateSubmit" @click="update(form)">Update</button>
+    </form>-->
+    <!-- <ul v-for="user in users" :key="user.id">
+      <li>
+        <span>{{user.name}}</span> &#160;
+        <button @click="edit(user)">Edit</button> ||
+        <button @click="del(user)">Delete</button>
+      </li>
+    </ul>-->
+    <form>
+      <input v-model="orang.name" name="name" placeholder="name" />
+      <input v-model="orang.role" name="role" type="text" placeholder="jabatan" />
+      <input v-model="orang.id" name="id" type="hidden" placeholder="idnya" />
+      <button @click.prevent="kirim">kirim</button>
+    </form>
+    <v-simple-table>
+      <template v-slot:default @refresh-dong="load">
+        <thead>
+          <tr>
+            <th class="text-left">Name</th>
+            <th class="text-left">Role</th>
+            <th class="text-left">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="orang in accounts" :key="orang.id">
+            <td>{{ orang.id }}</td>
+            <td>{{ orang.name }}</td>
+            <td>{{ orang.role }}</td>
+            <nuxt-link :to="'/home/' + orang.id">Details</nuxt-link>|
+            <button @click="hapus">Hapus</button>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
   </div>
+  <!-- ini crud sederhana yg udah work tinggal modif dikasih style -->
 </template>
 
 <script>
-import Axios from "axios";
-import ListItem from "~/components/list-item";
+/* eslint-disable */
+/* kalo eslint keinstall di project atau di vscode lu, aktifin eslint-disable disini */
+/* imprt Axios < hurufnya case sensitive, wajib import klo pake code dibawah ini, kecuali 
+sebelumnya udah pernah install axios dari nuxt pas install project bisa panggil axios tapi huruf kecil*/
 
+import Axios from "axios";
+// props disini difungsikan buat bikin variabel yg bisa dipanggil ke table vuetify dan datanya bisa dipanggil lewat array dari API jsons-server
 export default {
-  components: { ListItem },
+  props: {
+    name: {
+      type: String,
+      default: ""
+    },
+    role: {
+      type: String,
+      default: ""
+    }
+  },
   data() {
     return {
-      datas: [],
+      //form ini perlu diganti, ini kode lama
+      form: {
+        id: "",
+        name: ""
+      },
+      orang: {},
+      //sampe sini
+      users: "",
+      updateSubmit: false,
+
+      accounts: [],
       isError: false,
       isEmpty: false,
       isLoading: false,
@@ -51,23 +82,17 @@ export default {
     };
   },
   mounted() {
-    this.getData();
+    this.load();
   },
   methods: {
-    //   submit: function(){
-    //       this.getCari()
-    //   },
-    //   nyari: function(){
-    //       cari = this.isicari
-    //   },
-    async getData() {
+    async load() {
       this.isLoading = true;
 
       try {
-        const res = await Axios.get("http://localhost:3001/datas");
-        this.datas = res.data;
+        const res = await Axios.get("http://localhost:3003/accounts");
+        this.accounts = res.data;
 
-        if (this.datas.length === 0) {
+        if (this.accounts.length === 0) {
           this.isEmpty = true;
         }
       } catch (err) {
@@ -77,43 +102,71 @@ export default {
       }
 
       this.isLoading = false;
-
-      // STYLE JADUL
-      // Axios.get('https://jsonplaceholder.typicode.com/datas')
-      //   .then((res) => {
-      //     this.datas = res.data
-
-      //     if (this.datas.length === 0) {
-      //       this.isEmpty = true
-      //     }
-
-      //     this.isLoading = false
-      //   })
-      //   .catch((err) => {
-      //     console.error(err)
-
-      //     this.isError = true
-      //     this.isLoading = false
-      //   })
     },
-    // kode muklas
-    // computed:{
-    //     filteredPosts: function(){
-    //         return this.posts.filter((post) => {
-    //             return post.title.match(this.cari);
-    //         });
-    //     },
-    // }
-
-    getCari() {
+    kirim() {
+      //FUNGSI CREATE berhasil, lihat accounts pada m.json untuk lihat detail dan baca data() diatas
       this.$axios
-        .get("http://localhost:3001/datas/?q=" + this.cari)
+        .post("http://localhost:3003/accounts", this.orang)
         .then(() => {
-          this.$emit("");
+          this.$router.push("/home");
         });
+    },
+    hapus() {
+      const setuju = confirm("Data akan dihapus secara permanen..");
+      if (!setuju) {
+        return;
+      }
+      const setuju2 = confirm("Apakah Anda yakin?");
+      if (!setuju2) {
+        return;
+      }
+
+      this.$axios
+        .delete("http://localhost:3003/accounts/" + this.form.id)
+        .then(() => {
+          this.$emit("refresh-dong");
+        });
+      // load() {
+      //   axios
+      //     .get("http://localhost:3002/users")
+      //     .then(res => {
+      //       this.users = res.data;
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
+      // },
+      // add() {
+      //   axios.post("http://localhost:3002/accounts/", this.form).then(res => {
+      //     this.load();
+      //     this.form.name = "";
+      //   });
+      // },
+      // edit(user) {
+      //   this.updateSubmit = true;
+      //   this.form.id = user.id;
+      //   this.form.name = user.name;
+      // },
+      // update(form) {
+      //   return axios
+      //     .put("http://localhost:3002/users/" + form.id, { name: this.form.name })
+      //     .then(res => {
+      //       this.load();
+      //       this.form.id = "";
+      //       this.form.name = "";
+      //       this.updateSubmit = false;
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
+      // },
+      // del(user) {
+      //   axios.delete("http://localhost:3002/users/" + user.id).then(res => {
+      //     this.load();
+      //     let index = this.users.indexOf(form.name);
+      //     this.users.splice(index, 1);
+      //   });
     }
   }
 };
 </script>
-
-<style scoped></style>
