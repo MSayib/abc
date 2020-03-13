@@ -6,15 +6,15 @@
       <td align="center">{{ isi }}</td>
       <td align="center">
         <nuxt-link :to="'/home/' + id" style="text-decoration:  none;">
-          <v-btn small outlined color="info">Detail</v-btn>
+          <v-btn small color="info">Detail</v-btn>
         </nuxt-link>
         <nuxt-link
           :to="'/home/' + id + '/edit'"
           style="text-decoration:  none;"
         >
-          <v-btn small outlined color="warning">Ubah</v-btn>
+          <v-btn small color="warning">Ubah</v-btn>
         </nuxt-link>
-        <v-btn small outlined @click="hapus" color="error">Hapus</v-btn>
+        <v-btn small @click="hapus" color="error">Hapus</v-btn>
       </td>
     </tr>
   </tbody>

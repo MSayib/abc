@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="my-2">
-      <v-btn small outlined color="primary" @click="search">Search</v-btn>
+      <v-btn small color="primary" @click="search">Search</v-btn>
       <v-text-field
         v-model="query"
         label="Search"

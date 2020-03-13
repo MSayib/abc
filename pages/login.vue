@@ -30,6 +30,8 @@
                     name="username"
                     prepend-icon="mdi-account"
                     type="text"
+                    placeholder="admin@email.com"
+                    disabled=""
                   />
                   <!-- nyari kode icon disini : https://materialdesignicons.com/cdn/2.0.46/ -->
                   <v-text-field
@@ -38,6 +40,8 @@
                     name="password"
                     prepend-icon="mdi-lock"
                     type="password"
+                    placeholder="admin"
+                    disabled=""
                   />
                 </v-form>
               </v-card-text>
