@@ -18,6 +18,10 @@
     </v-toolbar-title>
     <v-spacer/>
     <v-toolbar-items>
+    <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
       <v-btn
         flat
         nuxt
