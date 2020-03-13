@@ -35,7 +35,9 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>mdi-minus</v-icon>
       </v-btn> -->
+      <!-- <nuxt-link to="/" style="text-decoration: none"> -->
       <v-toolbar-title v-text="title" />
+      <!-- </nuxt-link> -->
       <v-spacer />
       <!-- menghilangkan tombol dan icon burger di pojok kanan atas---- -->
       <!-- <v-btn
@@ -96,7 +98,18 @@ export default {
           icon: "mdi-login-variant",
           title: "Login",
           to: "/login"
+        },
+        {
+          icon: "mdi-island",
+          title: "Front",
+          to: "/front"
+        },
+        {
+          icon: "mdi-database",
+          title: "Table Post",
+          to: "/home"
         }
+
         // buat nambah logo di sidebar kiri
       ],
       miniVariant: false,
